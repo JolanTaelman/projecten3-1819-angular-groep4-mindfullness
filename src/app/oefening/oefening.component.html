@@ -13,7 +13,6 @@
     <h4>Bestand:</h4>
     <!-- AUDIO -->
     <audio controls *ngIf="oef.fileMimetype.startsWith('audio')">
-      <!--source src="http://141.134.155.219:3000/oefeningen/files/{{oef.fileName}}" type="audio/ogg"-->
         <source src="{{oef.url}}" type="audio/ogg">
     </audio>
      <!-- IMG -->

@@ -4,7 +4,6 @@ import { MAT_DIALOG_DATA } from '@angular/material';
 import { MatDialogRef } from '@angular/material';
 import { OefeningDataService } from '../oefening-data.service';
 import { FormGroup, Validators, FormBuilder } from '../../../node_modules/@angular/forms';
-import * as globals from '../../globals/globals';
 import { GebruikerDataService } from '../gebruiker-data.service';
 import { Observable } from 'rxjs';
 
@@ -115,7 +114,6 @@ export class OefeningComponent implements OnInit {
 
   // Select a new file
   openBestand() {
-   // window.open(globals.backendUrl + '/oefeningen/files/' + this.oef.fileName);
    console.log(this.oef)
    window.open(this.oef.url);
 
