@@ -1,7 +1,7 @@
 export class Oefening {
-    private _oefeningId: number;
+    private _oefeningId: string;
 
-    private _sessieId: number;
+    private _sessieId: string;
     private _naam: string;
     private _dateAdded: Date = new Date();
     private _beschrijving: string;
@@ -11,8 +11,9 @@ export class Oefening {
     private _fileOriginalName: string;
     private _fileSize: number;
     private _groepen: string;
+    private _url : string;
 
-    constructor(naam: string, beschrijving: string, sessieId: number) {
+    constructor(naam: string, beschrijving: string, sessieId: string) {
       this._naam = naam;
       this._beschrijving = beschrijving;
       this._sessieId = sessieId;
@@ -21,10 +22,13 @@ export class Oefening {
     /**
      * Geeft het id van een oefening terug
      */
-    get oefeningId(): number {
+    get oefeningId(): string {
       return this._oefeningId;
     }
 
+    set oefeningId( id : string) {
+      this._oefeningId = id;
+    }
     /**
      * Geeft de naam van een oefening terug
      */
@@ -35,7 +39,7 @@ export class Oefening {
     /**
      * Geeft het sessieId van een oefening terug
      */
-    get sessieId(): number {
+    get sessieId(): string {
       return this._sessieId;
     }
 
@@ -74,6 +78,14 @@ export class Oefening {
       return this._groepen;
     }
 
+    get url(): string {
+      return this._url;
+    }
+
+    set url(url: string) {
+      this._url = url;
+    }
+
     /**
      * Verandert de naam van de oefening
      * @param naam: Dit is de nieuwe naam van de oefening
@@ -108,6 +120,10 @@ export class Oefening {
 
     set file(file: File) {
       this._file = file;
+      this._fileMimetype = file.type;
+      this._fileName = file.name;
+      this._fileOriginalName = file.name;
+      this._fileSize = file.size;
     }
 
     set groepen(groepen: string) {
@@ -118,7 +134,7 @@ export class Oefening {
      * Verandert het sessieid van de oefening
      * @param id: Dit is de nieuwe sessieId van de oefening
      */
-    set sessieId(id: number) {
+    set sessieId(id: string) {
       this._sessieId = id;
     }
 
@@ -141,7 +157,8 @@ export class Oefening {
         fileName: this._fileName,
         fileOriginalName: this._fileOriginalName,
         fileSize: this._fileSize,
-        groepen: this._groepen
+        groepen: this._groepen,
+        url: this._url
       };
     }
   }

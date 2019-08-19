@@ -27,6 +27,7 @@ import { AuthenticationService } from './authentication.service';
 import { AuthGuardService } from './auth-guard.service';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
+import { AngularFireStorageModule } from '@angular/fire/storage';
 import { firebaseAndroidConfig } from 'src/environments/environment';
 import { AngularFireDatabaseModule  } from 'angularfire2/database';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
@@ -99,6 +100,7 @@ registerLocaleData(localeNl);
     ReactiveFormsModule,
     AngularFireModule.initializeApp(firebaseAndroidConfig, 'angular'),
     AngularFireAuthModule,
+    AngularFireStorageModule,
     AngularFirestoreModule,
     AngularFireDatabaseModule,
     MatNativeDateModule,

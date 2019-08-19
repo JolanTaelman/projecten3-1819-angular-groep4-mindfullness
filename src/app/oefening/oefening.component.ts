@@ -115,7 +115,10 @@ export class OefeningComponent implements OnInit {
 
   // Select a new file
   openBestand() {
-    window.open(globals.backendUrl + '/oefeningen/files/' + this.oef.fileName);
+   // window.open(globals.backendUrl + '/oefeningen/files/' + this.oef.fileName);
+   console.log(this.oef)
+   window.open(this.oef.url);
+
   }
 
   isChecked(oef: Oefening, nummer): boolean {

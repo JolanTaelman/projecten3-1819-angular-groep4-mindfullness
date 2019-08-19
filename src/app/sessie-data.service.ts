@@ -1,60 +1,47 @@
 import { Injectable } from '@angular/core';
 import { Sessie } from './sessie/sessie.model';
-import { Oefening } from './oefening/oefening.model';
-import * as globals from '../globals/globals';
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+
 import { Observable } from 'rxjs/Observable';
-import { of, from } from 'rxjs';
+import { AngularFirestore } from '@angular/fire/firestore';
+import { v4 as uuid } from 'uuid'
 
 @Injectable({
   providedIn: 'root'
 })
 export class SessieDataService {
-  constructor(private http: HttpClient) {}
+  constructor(private afs: AngularFirestore) {}
 
   getSessies(): Observable<Sessie[]> {
-    return this.http.get<Sessie[]>(globals.backendUrl + `/sessies`).pipe();
+    return this.afs.collection<Sessie>("Sessie").valueChanges()
+    }
+
+  getSessie(sessieId: string): Observable<Sessie> {
+    return this.afs.collection("Sessie").doc<Sessie>(sessieId).valueChanges()
   }
 
-  getSessie(sessieId: number): Observable<Sessie> {
-    return this.http
-      .get<Sessie>(globals.backendUrl + `/sessies/` + sessieId)
-      .pipe();
-  }
-
-  voegNieuweSessieToe(sessie: Sessie): Observable<Sessie> {
-    const fd = new FormData();
-    fd.append('naam', sessie.naam);
-    fd.append('beschrijving', sessie.beschrijving);
-
-    return this.http
-      .post<Sessie>(globals.backendUrl + `/sessies`, fd)
-      .pipe();
+  voegNieuweSessieToe(sessie: Sessie): void {
+    console.log(sessie)
+    let id = uuid();
+    this.afs.collection("Sessie").doc(id).set({
+      "beschrijving" : sessie.beschrijving,
+      "naam" : sessie.naam,
+      "sessieId": id,
+    });
   }
 
   verwijderSessie(sessie: Sessie) {
-    return this.http
-      .delete(globals.backendUrl + '/sessies/' + sessie.sessieId)
-      .subscribe(
-        res => {
-          console.log(res);
-        },
-        err => {
-          console.log(err);
-        }
-      );
+    console.log(sessie)
+    this.afs.collection("Sessie").doc(sessie.sessieId).delete()
+
   }
 
   updateSessie(sessie: Sessie) {
-    return this.http
-      .put<Sessie>(globals.backendUrl + `/sessies`, sessie)
-      .subscribe(
-        res => {
-          console.log(res);
-        },
-        err => {
-          console.log(err);
-        }
-      );
+    this.afs.collection("Sessie").doc(sessie.sessieId).set({
+      "beschrijving" : sessie.beschrijving,
+      "naam" : sessie.naam,
+      "sessieCode" : sessie.sessieCode,
+      "sessieId" : sessie.sessieId,
+    })
+
   }
 }

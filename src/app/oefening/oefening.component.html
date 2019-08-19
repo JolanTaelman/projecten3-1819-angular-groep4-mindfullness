@@ -13,16 +13,19 @@
     <h4>Bestand:</h4>
     <!-- AUDIO -->
     <audio controls *ngIf="oef.fileMimetype.startsWith('audio')">
-      <source src="http://141.134.155.219:3000/oefeningen/files/{{oef.fileName}}" type="audio/ogg">
-      Your browser does not support the audio element.
+      <!--source src="http://141.134.155.219:3000/oefeningen/files/{{oef.fileName}}" type="audio/ogg"-->
+        <source src="{{oef.url}}" type="audio/ogg">
     </audio>
+     <!-- IMG -->
+     <input type="button" *ngIf="oef.fileMimetype.startsWith('image')" value="Open image" (click)="openBestand()">
+
     <!-- PDF -->
     <button mat-stroked-button color="primary" style="font-weight: 100" tabindex=-1 (click)="openBestand()" *ngIf="oef.fileMimetype.startsWith('application')"><strong>Open
         bestand</strong>
     </button>
     <!-- VIDEO -->
     <video *ngIf="oef.fileMimetype.startsWith('video/mp4')" width="320" height="240" controls>
-      <source src="http://141.134.155.219:3000/oefeningen/files/{{oef.fileName}}" type="video/mp4">
+      <source src="{{oef.url}}" type="video/mp4">
       Your browser does not support this video.
     </video>
     <br>

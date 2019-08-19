@@ -5,7 +5,7 @@ export class Sessie {
   private _dateAdded: Date = new Date();
   private _beschrijving: string;
   private _oefeningen = new Array<Oefening>();
-  private _id: number;
+  private _id: string;
   private _sessieCode: string;
 
   constructor(naam: string, beschrijving: string) {
@@ -30,7 +30,7 @@ export class Sessie {
   /**
    * Geeft het sessieId van de sessie terug
    */
-  get sessieId(): number {
+  get sessieId(): string {
     return this._id;
   }
 
@@ -53,7 +53,7 @@ export class Sessie {
    * wijzigt het id van de sessie
    * @param id: dit is het nieuwe sessieID
    */
-  set sessieId(id: number) {
+  set sessieId(id: string) {
     this._id = id;
   }
 

@@ -76,7 +76,7 @@ export class OefeningEmptyComponent implements OnInit {
       groepen = groepen.slice(0, -1);
       oefening.groepen = groepen;
       oefening.file = this._file;
-      this.dialogRef.close(this._oefDataService.voegNieuweOefeningToe(oefening).subscribe());
+      this.dialogRef.close(this._oefDataService.voegNieuweOefeningToe(oefening));
     }
   }
 

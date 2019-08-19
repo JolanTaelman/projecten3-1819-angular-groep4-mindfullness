@@ -170,7 +170,6 @@ export class GebruikersComponent implements OnInit {
       };
       this.gService
         .updateUser(uid, updatedGebruiker)
-        .subscribe();
       this.showSnackBar(updatedGebruiker.name, 'ok');
 
       this.updateListData();
@@ -212,9 +211,7 @@ export class GebruikersComponent implements OnInit {
       dialogRef.afterClosed().subscribe(r => {
         if (r) {
           // Remove user
-          this.gService.removeUser(uid).subscribe(res => {
-            console.log(res);
-          });
+          this.gService.removeUser(uid);
           this._gebruikers = this.getUsers();
           this._gebruikers.subscribe(res => {
             // this.setGroepen(res);
