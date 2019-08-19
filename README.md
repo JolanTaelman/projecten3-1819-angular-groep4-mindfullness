@@ -1,6 +1,6 @@
 # Veranderingen 2e zit
-Verwijderen van environment variables
-Aanpassen backend naar firebase
+* Verwijderen van environment variables (globals)
+* Aanpassen backend naar firebase
 
 
 # Projecten III - Mindfulness - Angular webapplication
